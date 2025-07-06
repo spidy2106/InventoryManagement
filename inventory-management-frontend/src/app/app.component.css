@@ -1,0 +1,64 @@
+/* Root styling */
+:host {
+  display: block;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  background: #f5f7fa;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* Header */
+h1 {
+  text-align: center;
+  color: #1a202c;
+  margin-top: 30px;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Nav Links */
+nav a {
+  text-decoration: none;
+  color: #0077cc;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out, border-bottom 0.2s;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+}
+
+nav a:hover {
+  color: #005fa3;
+  border-bottom: 2px solid #005fa3;
+}
+
+/* Router outlet container */
+router-outlet + * {
+  display: block;
+  margin: 20px auto;
+  max-width: 800px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Divider */
+hr {
+  border: none;
+  height: 1px;
+  background: #e2e8f0;
+  margin: 0 30px;
+}

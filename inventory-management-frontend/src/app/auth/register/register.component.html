@@ -1,0 +1,14 @@
+<div class="login-container">
+  <div class="login-box">
+    <h2>Register</h2>
+
+    <input type="text" [(ngModel)]="name" placeholder="Name" />
+    <input type="text" [(ngModel)]="phone" placeholder="Phone Number" />
+    <input type="email" [(ngModel)]="email" placeholder="Email" />
+    <input type="password" [(ngModel)]="password" placeholder="Password" />
+
+    <button (click)="register()">Register</button>
+
+    <p *ngIf="message" class="error-msg">{{ message }}</p>
+  </div>
+</div>
