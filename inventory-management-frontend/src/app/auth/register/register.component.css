@@ -1,13 +1,13 @@
-/* same styles as login.component.css */
-
+/* Common container styling */
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 55vh;
+  height: 70vh; /* Use full screen height for centering */
   background: #f0f4f8;
 }
 
+/* Form box styling */
 .login-box {
   background: #ffffff;
   padding: 30px 40px;
@@ -16,17 +16,22 @@
   width: 100%;
   max-width: 400px;
   text-align: center;
+  box-sizing: border-box;
 }
 
-.login-box input {
+/* Input and select fields */
+.login-box input,
+.login-box select {
   width: 100%;
   padding: 12px;
   margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
+  box-sizing: border-box;
 }
 
+/* Button styling */
 .login-box button {
   width: 100%;
   padding: 12px;
@@ -34,18 +39,21 @@
   background-color: #007bff;
   color: #fff;
   font-size: 1rem;
+  font-weight: 500;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s ease;
 }
 
 .login-box button:hover {
   background-color: #0056b3;
 }
 
+/* Error message */
 .error-msg {
   margin-top: 12px;
-  color: red;
+  color: #d9534f;
   font-weight: 500;
+  font-size: 0.95rem;
 }

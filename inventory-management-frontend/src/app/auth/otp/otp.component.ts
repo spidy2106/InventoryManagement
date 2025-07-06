@@ -44,24 +44,39 @@ export class OtpComponent {
 
   }
 
-  verifyOtp() {
-    if (!this.otp) {
-      this.message = 'Please enter OTP';
-      return;
-    }
-
-    const payload = { email: this.email, otp: this.otp };
-
-    this.authService.verifyOtp(payload).subscribe({
-      next: (res: any) => {
-        localStorage.setItem('token', res.token);
-        if (res.role === 'ADMIN') this.router.navigate(['/admin']);
-        else if (res.role === 'USER') this.router.navigate(['/user']);
-        else this.message = 'Unknown role';
-      },
-      error: () => {
-        this.message = 'OTP verification failed';
-      }
-    });
+verifyOtp() {
+  if (!this.otp) {
+    this.message = 'Please enter OTP';
+    return;
   }
+
+  const payload = {
+    emailId: this.email.trim(),
+    otp: this.otp.trim()
+  };
+
+  this.authService.verifyOtp(payload).subscribe({
+    next: (res: any) => {
+      if (res.token) {
+        localStorage.setItem('token', res.token);
+
+        switch (res.role) {
+          case 'ADMIN':
+            this.router.navigate(['/admin']);
+            break;
+          case 'USER':
+            this.router.navigate(['/user']);
+            break;
+          default:
+            this.message = 'Unknown role. Contact admin.';
+        }
+      } else {
+        this.message = 'Invalid server response';
+      }
+    },
+    error: () => {
+      this.message = 'OTP verification failed';
+    }
+  });
+}
 }

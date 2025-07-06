@@ -1,48 +1,53 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms'; 
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '../../shared/services/auth.service'
+import { Router,RouterModule} from '@angular/router';
+
 @Component({
   selector: 'app-register',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'] // reuse same styles
+  styleUrls: ['./register.component.css'],
+  standalone: true,
 })
-export class RegisterComponent {
-  name = '';
-  phone = '';
-  email = '';
-  password = '';
-  message = '';
+export class RegisterComponent implements OnInit {
+  roles: string[] = [];
+  selectedRole: string = '';
+  
+  // Other form fields
+  email: string = '';
+  password: string = '';
+  phoneNumber: string = '';
+  userName: string = '';
+  message: string = '';
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {}
+
+  constructor(private http: HttpClient, private router: Router) {}
+
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  ngOnInit(): void {
+    this.http.get<string[]>('http://localhost:8080/api/auth/roles').subscribe({
+      next: (data) => this.roles = data,
+      error: () => this.message = 'Failed to load roles'
+    });
+  }
 
   register() {
-    if (!this.name || !this.phone || !this.email || !this.password) {
-      this.message = 'All fields are required';
-      return;
-    }
-
-    const userData = {
-      name: this.name,
-      phone: this.phone,
-      email: this.email,
-      password: this.password
+    const payload = {
+      emailId: this.email,
+      password: this.password,
+      phoneNumber: this.phoneNumber,
+      userName: this.userName,
+      role: this.selectedRole
     };
 
-    this.authService.register(userData).subscribe({
-      next: () => {
-        this.router.navigate(['/login']);
-      },
-      error: () => {
-        this.message = 'Registration failed. Try again.';
-      }
+    this.http.post('http://localhost:8080/api/auth/signup', payload).subscribe({
+      next: () => this.message = 'Registration successful',
+      error: () => this.message = 'Registration failed'
     });
   }
 }
-

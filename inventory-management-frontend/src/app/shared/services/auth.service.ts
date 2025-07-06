@@ -13,7 +13,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   // Login user with email & password
-  login(credentials: { email: string; password: string }): Observable<LoginResponse> {
+  login(credentials: { emailId: string; password: string }): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.baseUrl}/login`, credentials);
   }
 
@@ -31,7 +31,7 @@ export class AuthService {
 }
 
   // Verify OTP
-  verifyOtp(payload: { email: string; otp: string }): Observable<any> {
+  verifyOtp(payload: { emailId: string; otp: string }): Observable<any> {
     return this.http.post(`${this.baseUrl}/verify-otp`, payload);
   }
 }

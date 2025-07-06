@@ -18,14 +18,14 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  login() {
+ login() {
   if (!this.email || !this.password) {
     this.message = 'Please enter email and password';
     return;
   }
 
   const credentials = {
-    email: this.email,
+    emailId: this.email, 
     password: this.password
   };
 
@@ -46,5 +46,6 @@ export class LoginComponent {
       this.message = 'Invalid credentials';
     }
   });
-  }
+}
+
 }
