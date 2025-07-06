@@ -44,7 +44,8 @@ public class AuthServiceImpl implements AuthService {
         user.setEmailId(email);
         user.setPhoneNumber(request.getPhoneNumber());
         user.setUserPassword(request.getPassword()); // No encryption yet
-        user.setRole(Roles.USER);
+        Roles role = Roles.valueOf(request.getRole()); // safely map from string
+        user.setRole(role);
         user.setActive(true);
         user.setCreatedAt(LocalDateTime.now());
         user.setUpdatedAt(LocalDateTime.now());
@@ -68,6 +69,7 @@ public class AuthServiceImpl implements AuthService {
         LoginResponse res = new LoginResponse();
         res.setMessage("Login successful");
         res.setToken(jwt);
+        res.setRole(user.getRole().name());
         return res;
     }
 
@@ -112,6 +114,7 @@ public class AuthServiceImpl implements AuthService {
         LoginResponse response = new LoginResponse();
         response.setMessage("Login via OTP successful");
         response.setToken(jwt);
+        response.setRole(user.getRole().name());
         return response;
     }
 }
