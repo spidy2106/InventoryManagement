@@ -1,1 +1,38 @@
-<p>user-dashboard works!</p>
+<div class="flex h-screen">
+  <!-- Sidebar -->
+  <aside class="w-64 bg-gray-900 text-white flex flex-col">
+    <div class="text-2xl font-bold p-4 border-b border-gray-700 flex items-center gap-2">
+      <span>📦</span>
+      <span>Dashboard</span>
+    </div>
+    <nav class="flex-1 p-4 space-y-1 text-sm">
+      <a routerLink="overview" class="block px-4 py-2 rounded hover:bg-gray-700 transition">📊 Overview</a>
+      <a routerLink="products" class="block px-4 py-2 rounded hover:bg-gray-700 transition">🔍 Products</a>
+      <a routerLink="add-stock" class="block px-4 py-2 rounded hover:bg-gray-700 transition">➕ Add Stock</a>
+      <a routerLink="remove-stock" class="block px-4 py-2 rounded hover:bg-gray-700 transition">📤 Remove Stock</a>
+      <a routerLink="transfer-stock" class="block px-4 py-2 rounded hover:bg-gray-700 transition">🔁 Transfer Stock</a>
+      <a routerLink="activity" class="block px-4 py-2 rounded hover:bg-gray-700 transition">🕒 Activity Log</a>
+      <a routerLink="expiry" class="block px-4 py-2 rounded hover:bg-gray-700 transition">📅 Expiry Monitor</a>
+      <a routerLink="reports" class="block px-4 py-2 rounded hover:bg-gray-700 transition">📈 Reports</a>
+      <a routerLink="categories" class="block px-4 py-2 rounded hover:bg-gray-700 transition">📁 Categories</a>
+      <a routerLink="suppliers" class="block px-4 py-2 rounded hover:bg-gray-700 transition">🏭 Suppliers</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col bg-gray-100">
+    <!-- Header -->
+    <header class="flex justify-end items-center p-4 border-b bg-white shadow-sm">
+      <div class="flex items-center space-x-4">
+        <span class="font-medium text-gray-700">👋 Hello, <strong>{{ userName }}</strong></span>
+        <button class="text-blue-600 hover:underline" (click)="goToProfile()">Profile</button>
+        <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded" (click)="logout()">Logout</button>
+      </div>
+    </header>
+
+    <!-- Router Outlet -->
+    <main class="flex-1 p-6 overflow-y-auto">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

@@ -1,11 +1,14 @@
-<h1>{{ title }}</h1>
+<!-- Only show this section if not in dashboard -->
+<div *ngIf="shouldShowTopbar()">
+  <header class="bg-white shadow-md p-4 text-center">
+    <h1 class="text-2xl font-bold text-gray-800">Inventory Management System</h1>
+    <nav class="mt-2 space-x-6 text-blue-600">
+      <a routerLink="/login">Login</a> |
+      <a routerLink="/register">Register</a> |
+      <a routerLink="/otp">OTP Login</a>
+    </nav>
+  </header>
+</div>
 
-<nav>
-  <a routerLink="/login">Login</a> |
-  <a routerLink="/register">Register</a> |
-  <a routerLink="/otp">OTP Login</a>
-</nav>
-
-<hr />
-
+<!-- Main content -->
 <router-outlet></router-outlet>

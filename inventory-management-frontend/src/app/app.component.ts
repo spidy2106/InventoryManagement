@@ -1,13 +1,18 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'] // ✅ This links to the CSS file
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Inventory Management System';
+  constructor(public router: Router) {}
+
+  shouldShowTopbar(): boolean {
+    return !this.router.url.startsWith('/user') && !this.router.url.startsWith('/admin');
+  }
 }
