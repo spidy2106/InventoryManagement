@@ -4,6 +4,7 @@ public class LoginResponse {
 
     private String message;
     private String token;
+    private String role;
 
     // Constructors
     public LoginResponse() {}
@@ -28,5 +29,13 @@ public class LoginResponse {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

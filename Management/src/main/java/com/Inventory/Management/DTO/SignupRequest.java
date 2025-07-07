@@ -5,6 +5,7 @@ public class SignupRequest {
     private String emailId;
     private String phoneNumber;
     private String password;
+    private String role;
 
     public String getUserName() {
         return userName;
@@ -32,6 +33,14 @@ public class SignupRequest {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public void setPassword(String password) {
